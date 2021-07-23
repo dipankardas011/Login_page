@@ -28,6 +28,7 @@ class out extends JFrame implements ActionListener {
         txt = new JTextField();
         txt.setBackground(Color.orange);
         txt.setBounds(100, 60, 120, 30);
+        txt.setToolTipText("Enter your Username");
 
         JLabel l2 = new JLabel("Password: ");
         l2.setBounds(20, 120, 100, 30);
@@ -35,10 +36,12 @@ class out extends JFrame implements ActionListener {
         val = new JPasswordField();
         val.setBounds(100, 120, 120, 30);
         val.setBackground(Color.orange);
+        val.setToolTipText("Enter your password");
 
         submit = new JButton("Login");
         submit.setForeground(Color.white);
         submit.setBackground(Color.magenta);
+        submit.setToolTipText("Click to Login");
         submit.setBounds(100, 170, 80, 30);
 
         res= new JLabel();
@@ -68,10 +71,20 @@ class out extends JFrame implements ActionListener {
 
     }
     void display(){
-        if(emailId.compareTo("dipsonu10")==0 && paswd.compareTo("Password")==0)
+        /**
+         * the login credentials are being checked
+         * email = dd
+         * password = 1234
+         */
+        if(emailId.compareTo("dd")==0 && paswd.compareTo("1234")==0)
         {
             res.setText("Logged in successfully");
             res.setForeground(Color.GREEN);
+            val.setEditable(false);
+            txt.setEditable(false);
+            submit.setEnabled(false);
+            afterLogin x= new afterLogin();
+
         }
         else{
             res.setText("Incorrect Password/email");
@@ -104,5 +117,34 @@ class out extends JFrame implements ActionListener {
             case 3:attempt.setForeground(Color.green); break;
         }
         
+    }
+}
+
+class afterLogin extends Canvas{
+
+    public void paint(Graphics g){
+        g.drawString("Hello", 40, 40);
+        setBackground(Color.gray);
+        g.fillRect(130, 30, 100, 80);
+        g.drawOval(30, 130, 50, 60);
+        setForeground(Color.YELLOW);
+        g.fillOval(130, 130, 50, 60);
+        g.drawArc(30, 200, 40, 50, 90, 60);
+        g.fillArc(30, 130, 40, 50, 180, 40);
+    }
+
+    afterLogin(){
+        JFrame f=new JFrame("Welcome to the dashboard");
+        f.setAlwaysOnTop(true);
+        f.getContentPane().setBackground(Color.GRAY);
+        JLabel l=new JLabel("Hello Dipankar");
+        l.setBounds(10,20,100,40);
+        f.add(l);
+        f.add(this);
+        f.setVisible(true);
+        f.setSize(400,400);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
     }
 }
